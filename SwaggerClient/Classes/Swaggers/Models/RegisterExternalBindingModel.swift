@@ -8,16 +8,16 @@
 import Foundation
 
 
-public class RegisterExternalBindingModel: JSONEncodable {
+open class RegisterExternalBindingModel: JSONEncodable {
     public var email: String?
 
     public init() {}
 
     // MARK: JSONEncodable
-    func encodeToJSON() -> AnyObject {
-        var nillableDictionary = [String:AnyObject?]()
+    func encodeToJSON() -> Any {
+        var nillableDictionary = [String:Any?]()
         nillableDictionary["Email"] = self.email
-        let dictionary: [String:AnyObject] = APIHelper.rejectNil(nillableDictionary) ?? [:]
+        let dictionary: [String:Any] = APIHelper.rejectNil(nillableDictionary) ?? [:]
         return dictionary
     }
 }

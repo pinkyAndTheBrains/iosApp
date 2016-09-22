@@ -9,15 +9,15 @@ import Alamofire
 
 
 
-public class PaymentFinalAPI: APIBase {
+open class PaymentFinalAPI: APIBase {
     /**
 
      - parameter transactionAuth: (body)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    public class func paymentFinalPost(transactionAuth transactionAuth: TransactionAuth, completion: ((error: ErrorType?) -> Void)) {
+    open class func paymentFinalPost(transactionAuth transactionAuth: TransactionAuth, completion: @escaping ((_ error: Error?) -> Void)) {
         paymentFinalPostWithRequestBuilder(transactionAuth: transactionAuth).execute { (response, error) -> Void in
-            completion(error: error);
+            completion(error);
         }
     }
 
@@ -29,7 +29,7 @@ public class PaymentFinalAPI: APIBase {
 
      - returns: RequestBuilder<Void> 
      */
-    public class func paymentFinalPostWithRequestBuilder(transactionAuth transactionAuth: TransactionAuth) -> RequestBuilder<Void> {
+    open class func paymentFinalPostWithRequestBuilder(transactionAuth transactionAuth: TransactionAuth) -> RequestBuilder<Void> {
         let path = "/api/PaymentFinal"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = transactionAuth.encodeToJSON() as? [String:AnyObject]

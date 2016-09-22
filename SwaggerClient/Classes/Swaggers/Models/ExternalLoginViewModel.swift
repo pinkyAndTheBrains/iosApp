@@ -8,7 +8,7 @@
 import Foundation
 
 
-public class ExternalLoginViewModel: JSONEncodable {
+open class ExternalLoginViewModel: JSONEncodable {
     public var name: String?
     public var url: String?
     public var state: String?
@@ -16,12 +16,12 @@ public class ExternalLoginViewModel: JSONEncodable {
     public init() {}
 
     // MARK: JSONEncodable
-    func encodeToJSON() -> AnyObject {
-        var nillableDictionary = [String:AnyObject?]()
+    func encodeToJSON() -> Any {
+        var nillableDictionary = [String:Any?]()
         nillableDictionary["Name"] = self.name
         nillableDictionary["Url"] = self.url
         nillableDictionary["State"] = self.state
-        let dictionary: [String:AnyObject] = APIHelper.rejectNil(nillableDictionary) ?? [:]
+        let dictionary: [String:Any] = APIHelper.rejectNil(nillableDictionary) ?? [:]
         return dictionary
     }
 }

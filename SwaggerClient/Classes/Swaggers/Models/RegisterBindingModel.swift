@@ -8,7 +8,7 @@
 import Foundation
 
 
-public class RegisterBindingModel: JSONEncodable {
+open class RegisterBindingModel: JSONEncodable {
     public var email: String?
     public var password: String?
     public var confirmPassword: String?
@@ -16,12 +16,12 @@ public class RegisterBindingModel: JSONEncodable {
     public init() {}
 
     // MARK: JSONEncodable
-    func encodeToJSON() -> AnyObject {
-        var nillableDictionary = [String:AnyObject?]()
+    func encodeToJSON() -> Any {
+        var nillableDictionary = [String:Any?]()
         nillableDictionary["Email"] = self.email
         nillableDictionary["Password"] = self.password
         nillableDictionary["ConfirmPassword"] = self.confirmPassword
-        let dictionary: [String:AnyObject] = APIHelper.rejectNil(nillableDictionary) ?? [:]
+        let dictionary: [String:Any] = APIHelper.rejectNil(nillableDictionary) ?? [:]
         return dictionary
     }
 }

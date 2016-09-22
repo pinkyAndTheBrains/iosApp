@@ -8,7 +8,7 @@
 import Foundation
 
 
-public class ChangePasswordBindingModel: JSONEncodable {
+open class ChangePasswordBindingModel: JSONEncodable {
     public var oldPassword: String?
     public var newPassword: String?
     public var confirmPassword: String?
@@ -16,12 +16,12 @@ public class ChangePasswordBindingModel: JSONEncodable {
     public init() {}
 
     // MARK: JSONEncodable
-    func encodeToJSON() -> AnyObject {
-        var nillableDictionary = [String:AnyObject?]()
+    func encodeToJSON() -> Any {
+        var nillableDictionary = [String:Any?]()
         nillableDictionary["OldPassword"] = self.oldPassword
         nillableDictionary["NewPassword"] = self.newPassword
         nillableDictionary["ConfirmPassword"] = self.confirmPassword
-        let dictionary: [String:AnyObject] = APIHelper.rejectNil(nillableDictionary) ?? [:]
+        let dictionary: [String:Any] = APIHelper.rejectNil(nillableDictionary) ?? [:]
         return dictionary
     }
 }
