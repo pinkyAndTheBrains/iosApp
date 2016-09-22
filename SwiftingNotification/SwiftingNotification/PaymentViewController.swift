@@ -42,7 +42,22 @@ extension PaymentViewController: PinPadPasswordProtocol {
     
     func pinPadSuccessPin() {
         
+        SwiftSpinner.hide()
+        SwiftSpinner.show(delay: 0.0, title: "Authorizing...", animated: true)
         
-        performSegue(withIdentifier: "Success", sender: nil)
+        delay(seconds: 6.0, completion: {
+            
+            SwiftSpinner.hide()
+            self.performSegue(withIdentifier: "Success", sender: nil)
+        })
+    }
+    
+    func delay(seconds: Double, completion: @escaping () -> ()) {
+        let popTime = DispatchTime.now() + Double(Int64( Double(NSEC_PER_SEC) * seconds )) / Double(NSEC_PER_SEC)
+        
+        DispatchQueue.main.asyncAfter(deadline: popTime) {
+            completion()
+        }
     }
 }
+

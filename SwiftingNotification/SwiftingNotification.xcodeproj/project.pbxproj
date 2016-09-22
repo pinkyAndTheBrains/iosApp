@@ -28,6 +28,7 @@
 		2EA47CC21D947A3500CA3D4B /* PPPinCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA47CBC1D947A3500CA3D4B /* PPPinCircleView.m */; };
 		2EA47CC31D947A3500CA3D4B /* PPPinPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA47CBE1D947A3500CA3D4B /* PPPinPadViewController.m */; };
 		2EA47CC41D947A3500CA3D4B /* PPPinPadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EA47CBF1D947A3500CA3D4B /* PPPinPadViewController.xib */; };
+		2EA47CC61D94824600CA3D4B /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA47CC51D94824600CA3D4B /* SwiftSpinner.swift */; };
 		2EA6EEEE1D94392800F5CCC1 /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EA6EEED1D94392800F5CCC1 /* Payment.storyboard */; };
 		2EA6EEF01D94395D00F5CCC1 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6EEEF1D94395D00F5CCC1 /* PaymentViewController.swift */; };
 		2EA6EEF21D94521F00F5CCC1 /* PaymentSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6EEF11D94521F00F5CCC1 /* PaymentSuccessViewController.swift */; };
@@ -87,6 +88,7 @@
 		2EA47CBD1D947A3500CA3D4B /* PPPinPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPinPadViewController.h; sourceTree = "<group>"; };
 		2EA47CBE1D947A3500CA3D4B /* PPPinPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPinPadViewController.m; sourceTree = "<group>"; };
 		2EA47CBF1D947A3500CA3D4B /* PPPinPadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PPPinPadViewController.xib; sourceTree = "<group>"; };
+		2EA47CC51D94824600CA3D4B /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
 		2EA6EEED1D94392800F5CCC1 /* Payment.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
 		2EA6EEEF1D94395D00F5CCC1 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		2EA6EEF11D94521F00F5CCC1 /* PaymentSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentSuccessViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 		1F85A6DB1D44279E0006907C /* SwiftingNotification */ = {
 			isa = PBXGroup;
 			children = (
+				2EA47CC51D94824600CA3D4B /* SwiftSpinner.swift */,
 				2EA47CB71D947A3500CA3D4B /* PinPad */,
 				1F9EE3D61D61AEDC00AD24F7 /* Classes */,
 				1FC4222E1D5E702C00917D25 /* Consts.swift */,
@@ -317,6 +320,7 @@
 				1F9EE3D81D61AF3B00AD24F7 /* NotificationContent.swift in Sources */,
 				1F9EE3DA1D61B42800AD24F7 /* Helpers.swift in Sources */,
 				1F85A6DF1D44279E0006907C /* ViewController.swift in Sources */,
+				2EA47CC61D94824600CA3D4B /* SwiftSpinner.swift in Sources */,
 				2EA47CC31D947A3500CA3D4B /* PPPinPadViewController.m in Sources */,
 				1FC4222F1D5E702C00917D25 /* Consts.swift in Sources */,
 				1F9EE3D51D61AE9800AD24F7 /* NotificationButton.swift in Sources */,
