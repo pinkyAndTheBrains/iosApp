@@ -77,7 +77,7 @@ class AlamofireRequestBuilder<T>: RequestBuilder<T> {
 
     }
 
-    private func processRequest(request: Request, _ managerId: String, _ completion: (response: Response<T>?, error: ErrorType?) -> Void) {
+    private func processRequest(request: Request, _ managerId: String, _ completion: (_ response: Response<T>?, _ error: Error?) -> Void) {
         if let credential = self.credential {
             request.authenticate(usingCredential: credential)
         }

@@ -45,11 +45,16 @@ extension PaymentViewController: PinPadPasswordProtocol {
         SwiftSpinner.hide()
         SwiftSpinner.show(delay: 0.0, title: "Authorizing...", animated: true)
         
-        delay(seconds: 6.0, completion: {
-            
-            SwiftSpinner.hide()
-            self.performSegue(withIdentifier: "Success", sender: nil)
-        })
+//        PaymentPrepareAPI.paymentPrepareGet(productId: 1,
+//            completion: { (data, error) in
+//                
+//                print(data)
+//                print(error)
+//                SwiftSpinner.hide()
+//                self.performSegue(withIdentifier: "Success", sender: nil)
+//        })
+        
+        
     }
     
     func delay(seconds: Double, completion: @escaping () -> ()) {
