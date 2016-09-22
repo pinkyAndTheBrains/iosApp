@@ -22,6 +22,9 @@
 		1FBF33DB1D46BC9700950439 /* NotificationContentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1FBF33CC1D46BC9700950439 /* NotificationContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1FC4222F1D5E702C00917D25 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC4222E1D5E702C00917D25 /* Consts.swift */; };
 		2E8F077B1D942A78009AF852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E8F077A1D942A78009AF852 /* Assets.xcassets */; };
+		2EA6EEEE1D94392800F5CCC1 /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EA6EEED1D94392800F5CCC1 /* Payment.storyboard */; };
+		2EA6EEF01D94395D00F5CCC1 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6EEEF1D94395D00F5CCC1 /* PaymentViewController.swift */; };
+		2EA6EEF21D94521F00F5CCC1 /* PaymentSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6EEF11D94521F00F5CCC1 /* PaymentSuccessViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		1FBF33D81D46BC9700950439 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FC4222E1D5E702C00917D25 /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		2E8F077A1D942A78009AF852 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2EA6EEED1D94392800F5CCC1 /* Payment.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
+		2EA6EEEF1D94395D00F5CCC1 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		2EA6EEF11D94521F00F5CCC1 /* PaymentSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentSuccessViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,9 @@
 				1F85A6E31D44279E0006907C /* Assets.xcassets */,
 				1F85A6E51D44279E0006907C /* LaunchScreen.storyboard */,
 				1F85A6E81D44279E0006907C /* Info.plist */,
+				2EA6EEED1D94392800F5CCC1 /* Payment.storyboard */,
+				2EA6EEEF1D94395D00F5CCC1 /* PaymentViewController.swift */,
+				2EA6EEF11D94521F00F5CCC1 /* PaymentSuccessViewController.swift */,
 			);
 			path = SwiftingNotification;
 			sourceTree = "<group>";
@@ -243,6 +252,7 @@
 				1F85A6E71D44279E0006907C /* LaunchScreen.storyboard in Resources */,
 				1F85A6E41D44279E0006907C /* Assets.xcassets in Resources */,
 				1F85A6E21D44279E0006907C /* Main.storyboard in Resources */,
+				2EA6EEEE1D94392800F5CCC1 /* Payment.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,12 +272,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EA6EEF01D94395D00F5CCC1 /* PaymentViewController.swift in Sources */,
 				1F9EE3D81D61AF3B00AD24F7 /* NotificationContent.swift in Sources */,
 				1F9EE3DA1D61B42800AD24F7 /* Helpers.swift in Sources */,
 				1F85A6DF1D44279E0006907C /* ViewController.swift in Sources */,
 				1FC4222F1D5E702C00917D25 /* Consts.swift in Sources */,
 				1F9EE3D51D61AE9800AD24F7 /* NotificationButton.swift in Sources */,
 				1F85A6DD1D44279E0006907C /* AppDelegate.swift in Sources */,
+				2EA6EEF21D94521F00F5CCC1 /* PaymentSuccessViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

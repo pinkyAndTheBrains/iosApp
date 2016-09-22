@@ -1,39 +1,72 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QwI-tp-RkT">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--History-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SwiftingNotification" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="History" id="BYZ-38-t0r" customClass="ViewController" customModule="SwiftingNotification" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rtU-Tx-4IT">
-                                <state key="normal" title="Trigger"/>
-                                <connections>
-                                    <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nju-Mi-2B2"/>
-                                </connections>
-                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="history" translatesAutoresizingMaskIntoConstraints="NO" id="ihf-f9-ZlM"/>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="rtU-Tx-4IT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8Ea-uB-pcd"/>
-                            <constraint firstItem="rtU-Tx-4IT" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="pwz-N9-bc0"/>
+                            <constraint firstItem="ihf-f9-ZlM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1UK-wy-LBB"/>
+                            <constraint firstItem="ihf-f9-ZlM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="LMa-Ut-qTJ"/>
+                            <constraint firstAttribute="trailing" secondItem="ihf-f9-ZlM" secondAttribute="trailing" id="eDZ-Ds-qbl"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ihf-f9-ZlM" secondAttribute="bottom" id="xNr-TS-m5c"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="0AQ-bY-tJs">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="4Cx-3O-1cJ">
+                            <connections>
+                                <action selector="barButtonTapped:" destination="BYZ-38-t0r" id="FeQ-Pe-q0u"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1076" y="93.103448275862078"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="BlJ-aD-XS2">
+            <objects>
+                <navigationController title="History" automaticallyAdjustsScrollViewInsets="NO" id="QwI-tp-RkT" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Ex7-tE-73C">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                        <color key="barTintColor" red="0.094117647060000004" green="0.37254901959999998" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="c0W-hN-23r"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j4J-0G-8Lo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-284" y="-167"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="history" width="562" height="1000"/>
+    </resources>
 </document>
