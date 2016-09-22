@@ -22,6 +22,12 @@
 		1FBF33DB1D46BC9700950439 /* NotificationContentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1FBF33CC1D46BC9700950439 /* NotificationContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1FC4222F1D5E702C00917D25 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC4222E1D5E702C00917D25 /* Consts.swift */; };
 		2E8F077B1D942A78009AF852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E8F077A1D942A78009AF852 /* Assets.xcassets */; };
+		2EA47CB61D947A2D00CA3D4B /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA47CB51D947A2D00CA3D4B /* TestObject.m */; };
+		2EA47CC01D947A3500CA3D4B /* pinViewImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EA47CB81D947A3500CA3D4B /* pinViewImage.png */; };
+		2EA47CC11D947A3500CA3D4B /* PPCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA47CBA1D947A3500CA3D4B /* PPCircleButton.m */; };
+		2EA47CC21D947A3500CA3D4B /* PPPinCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA47CBC1D947A3500CA3D4B /* PPPinCircleView.m */; };
+		2EA47CC31D947A3500CA3D4B /* PPPinPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA47CBE1D947A3500CA3D4B /* PPPinPadViewController.m */; };
+		2EA47CC41D947A3500CA3D4B /* PPPinPadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EA47CBF1D947A3500CA3D4B /* PPPinPadViewController.xib */; };
 		2EA6EEEE1D94392800F5CCC1 /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EA6EEED1D94392800F5CCC1 /* Payment.storyboard */; };
 		2EA6EEF01D94395D00F5CCC1 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6EEEF1D94395D00F5CCC1 /* PaymentViewController.swift */; };
 		2EA6EEF21D94521F00F5CCC1 /* PaymentSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6EEF11D94521F00F5CCC1 /* PaymentSuccessViewController.swift */; };
@@ -70,6 +76,17 @@
 		1FBF33D81D46BC9700950439 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FC4222E1D5E702C00917D25 /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		2E8F077A1D942A78009AF852 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2EA47CB31D947A2C00CA3D4B /* SwiftingNotification-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftingNotification-Bridging-Header.h"; sourceTree = "<group>"; };
+		2EA47CB41D947A2D00CA3D4B /* TestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObject.h; sourceTree = "<group>"; };
+		2EA47CB51D947A2D00CA3D4B /* TestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObject.m; sourceTree = "<group>"; };
+		2EA47CB81D947A3500CA3D4B /* pinViewImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinViewImage.png; sourceTree = "<group>"; };
+		2EA47CB91D947A3500CA3D4B /* PPCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPCircleButton.h; sourceTree = "<group>"; };
+		2EA47CBA1D947A3500CA3D4B /* PPCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPCircleButton.m; sourceTree = "<group>"; };
+		2EA47CBB1D947A3500CA3D4B /* PPPinCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPinCircleView.h; sourceTree = "<group>"; };
+		2EA47CBC1D947A3500CA3D4B /* PPPinCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPinCircleView.m; sourceTree = "<group>"; };
+		2EA47CBD1D947A3500CA3D4B /* PPPinPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPinPadViewController.h; sourceTree = "<group>"; };
+		2EA47CBE1D947A3500CA3D4B /* PPPinPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPinPadViewController.m; sourceTree = "<group>"; };
+		2EA47CBF1D947A3500CA3D4B /* PPPinPadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PPPinPadViewController.xib; sourceTree = "<group>"; };
 		2EA6EEED1D94392800F5CCC1 /* Payment.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
 		2EA6EEEF1D94395D00F5CCC1 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		2EA6EEF11D94521F00F5CCC1 /* PaymentSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentSuccessViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +134,7 @@
 		1F85A6DB1D44279E0006907C /* SwiftingNotification */ = {
 			isa = PBXGroup;
 			children = (
+				2EA47CB71D947A3500CA3D4B /* PinPad */,
 				1F9EE3D61D61AEDC00AD24F7 /* Classes */,
 				1FC4222E1D5E702C00917D25 /* Consts.swift */,
 				1F85A6DC1D44279E0006907C /* AppDelegate.swift */,
@@ -128,6 +146,9 @@
 				2EA6EEED1D94392800F5CCC1 /* Payment.storyboard */,
 				2EA6EEEF1D94395D00F5CCC1 /* PaymentViewController.swift */,
 				2EA6EEF11D94521F00F5CCC1 /* PaymentSuccessViewController.swift */,
+				2EA47CB41D947A2D00CA3D4B /* TestObject.h */,
+				2EA47CB51D947A2D00CA3D4B /* TestObject.m */,
+				2EA47CB31D947A2C00CA3D4B /* SwiftingNotification-Bridging-Header.h */,
 			);
 			path = SwiftingNotification;
 			sourceTree = "<group>";
@@ -160,6 +181,21 @@
 				2E8F077A1D942A78009AF852 /* Assets.xcassets */,
 			);
 			path = NotificationContentExtension;
+			sourceTree = "<group>";
+		};
+		2EA47CB71D947A3500CA3D4B /* PinPad */ = {
+			isa = PBXGroup;
+			children = (
+				2EA47CB81D947A3500CA3D4B /* pinViewImage.png */,
+				2EA47CB91D947A3500CA3D4B /* PPCircleButton.h */,
+				2EA47CBA1D947A3500CA3D4B /* PPCircleButton.m */,
+				2EA47CBB1D947A3500CA3D4B /* PPPinCircleView.h */,
+				2EA47CBC1D947A3500CA3D4B /* PPPinCircleView.m */,
+				2EA47CBD1D947A3500CA3D4B /* PPPinPadViewController.h */,
+				2EA47CBE1D947A3500CA3D4B /* PPPinPadViewController.m */,
+				2EA47CBF1D947A3500CA3D4B /* PPPinPadViewController.xib */,
+			);
+			path = PinPad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +251,7 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 3T6G4W9B2P;
 						DevelopmentTeamName = "F. Hoffmann-La Roche Ltd.";
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					1FBF33CB1D46BC9700950439 = {
@@ -251,7 +288,9 @@
 			files = (
 				1F85A6E71D44279E0006907C /* LaunchScreen.storyboard in Resources */,
 				1F85A6E41D44279E0006907C /* Assets.xcassets in Resources */,
+				2EA47CC41D947A3500CA3D4B /* PPPinPadViewController.xib in Resources */,
 				1F85A6E21D44279E0006907C /* Main.storyboard in Resources */,
+				2EA47CC01D947A3500CA3D4B /* pinViewImage.png in Resources */,
 				2EA6EEEE1D94392800F5CCC1 /* Payment.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,11 +312,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EA6EEF01D94395D00F5CCC1 /* PaymentViewController.swift in Sources */,
+				2EA47CC21D947A3500CA3D4B /* PPPinCircleView.m in Sources */,
+				2EA47CB61D947A2D00CA3D4B /* TestObject.m in Sources */,
 				1F9EE3D81D61AF3B00AD24F7 /* NotificationContent.swift in Sources */,
 				1F9EE3DA1D61B42800AD24F7 /* Helpers.swift in Sources */,
 				1F85A6DF1D44279E0006907C /* ViewController.swift in Sources */,
+				2EA47CC31D947A3500CA3D4B /* PPPinPadViewController.m in Sources */,
 				1FC4222F1D5E702C00917D25 /* Consts.swift in Sources */,
 				1F9EE3D51D61AE9800AD24F7 /* NotificationButton.swift in Sources */,
+				2EA47CC11D947A3500CA3D4B /* PPCircleButton.m in Sources */,
 				1F85A6DD1D44279E0006907C /* AppDelegate.swift in Sources */,
 				2EA6EEF21D94521F00F5CCC1 /* PaymentSuccessViewController.swift in Sources */,
 			);
@@ -423,11 +466,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 3T6G4W9B2P;
 				INFOPLIST_FILE = SwiftingNotification/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wojteklu.SwiftingNotification;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftingNotification/SwiftingNotification-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -437,11 +483,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 3T6G4W9B2P;
 				INFOPLIST_FILE = SwiftingNotification/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wojteklu.SwiftingNotification;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftingNotification/SwiftingNotification-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

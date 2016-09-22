@@ -28,7 +28,7 @@
                                 <color key="tintColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                 <state key="normal" title="Pay"/>
                                 <connections>
-                                    <segue destination="C8H-gQ-oqs" kind="show" id="Iop-gN-JUY"/>
+                                    <action selector="payButtonTapped:" destination="mUu-mK-oAL" eventType="touchUpInside" id="ULp-QE-OtV"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Ye0-w9-G8H">
@@ -89,6 +89,9 @@
                             <constraint firstAttribute="trailing" secondItem="dLc-0v-bdM" secondAttribute="trailing" constant="12" id="wgA-2m-OUD"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="C8H-gQ-oqs" kind="show" identifier="Success" id="MhH-YY-S5r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oG0-X4-yfV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
