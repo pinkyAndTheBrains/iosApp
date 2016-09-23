@@ -100,21 +100,17 @@
                                             <constraint firstItem="0y1-uS-VwC" firstAttribute="top" secondItem="qeV-xf-EaT" secondAttribute="bottom" constant="5" id="qIn-PI-kcU"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jm-IK-VS8">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="€3.60" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jm-IK-VS8">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.094117647060000004" green="0.37254901959999998" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3r-WS-CAO">
-                                        <frame key="frameInset" minX="167" minY="115" width="21" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="€4.70" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3r-WS-CAO">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.094117647060000004" green="0.37254901959999998" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFu-fB-gcb">
-                                        <frame key="frameInset" minX="289" minY="115" width="22" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="€6.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFu-fB-gcb">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.094117647060000004" green="0.37254901959999998" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -140,6 +136,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="v3r-WS-CAO" firstAttribute="centerX" secondItem="68J-Q2-i5v" secondAttribute="centerX" id="3lc-MA-3ii"/>
                                     <constraint firstItem="Saa-HU-Kv1" firstAttribute="width" secondItem="Saa-HU-Kv1" secondAttribute="height" multiplier="1:1" id="56d-vs-W8Z"/>
                                     <constraint firstItem="68J-Q2-i5v" firstAttribute="top" secondItem="jQo-hM-psf" secondAttribute="top" id="G8w-UI-NvB"/>
                                     <constraint firstItem="Saa-HU-Kv1" firstAttribute="top" secondItem="DL6-AH-AUK" secondAttribute="bottom" constant="-24" id="GH3-LZ-0W7"/>
@@ -158,8 +155,11 @@
                                     <constraint firstItem="eLr-Sz-j6s" firstAttribute="width" secondItem="jQo-hM-psf" secondAttribute="width" multiplier="0.31" id="hZD-xC-Wtc"/>
                                     <constraint firstItem="9Qp-Rf-PCF" firstAttribute="leading" secondItem="eLr-Sz-j6s" secondAttribute="trailing" constant="-24" id="mLk-d8-2nh"/>
                                     <constraint firstItem="Saa-HU-Kv1" firstAttribute="top" secondItem="jQo-hM-psf" secondAttribute="top" id="njI-0Q-eFu"/>
+                                    <constraint firstItem="dFu-fB-gcb" firstAttribute="top" secondItem="Saa-HU-Kv1" secondAttribute="bottom" constant="5" id="p4B-nG-hLJ"/>
                                     <constraint firstAttribute="height" constant="140" id="s33-1o-h70"/>
                                     <constraint firstItem="eLr-Sz-j6s" firstAttribute="top" secondItem="9Qp-Rf-PCF" secondAttribute="bottom" constant="-24" id="s8y-BU-2iw"/>
+                                    <constraint firstItem="v3r-WS-CAO" firstAttribute="top" secondItem="68J-Q2-i5v" secondAttribute="bottom" constant="5" id="vsq-Tl-bLR"/>
+                                    <constraint firstItem="dFu-fB-gcb" firstAttribute="centerX" secondItem="Saa-HU-Kv1" secondAttribute="centerX" id="zzY-IZ-4ap"/>
                                 </constraints>
                             </view>
                         </subviews>

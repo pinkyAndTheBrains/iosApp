@@ -9,15 +9,15 @@ import Alamofire
 
 
 
-public class SuggestionsAPI: APIBase {
+open class SuggestionsAPI: APIBase {
     /**
 
      - parameter beaconId: (query)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    public class func suggestionsGet(beaconId beaconId: String, completion: ((data: [Product]?, error: ErrorType?) -> Void)) {
+    open class func suggestionsGet(beaconId beaconId: String, completion: @escaping ((_ data: [Product]?,_ error: Error?) -> Void)) {
         suggestionsGetWithRequestBuilder(beaconId: beaconId).execute { (response, error) -> Void in
-            completion(data: response?.body, error: error);
+            completion(response?.body, error);
         }
     }
 
@@ -47,11 +47,11 @@ public class SuggestionsAPI: APIBase {
 
      - returns: RequestBuilder<[Product]> 
      */
-    public class func suggestionsGetWithRequestBuilder(beaconId beaconId: String) -> RequestBuilder<[Product]> {
+    open class func suggestionsGetWithRequestBuilder(beaconId beaconId: String) -> RequestBuilder<[Product]> {
         let path = "/api/Suggestions"
         let URLString = SwaggerClientAPI.basePath + path
 
-        let nillableParameters: [String:AnyObject?] = [
+        let nillableParameters: [String:Any?] = [
             "beaconId": beaconId
         ]
  

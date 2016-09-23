@@ -8,18 +8,18 @@
 import Foundation
 
 
-public class RemoveLoginBindingModel: JSONEncodable {
+open class RemoveLoginBindingModel: JSONEncodable {
     public var loginProvider: String?
     public var providerKey: String?
 
     public init() {}
 
     // MARK: JSONEncodable
-    func encodeToJSON() -> AnyObject {
-        var nillableDictionary = [String:AnyObject?]()
+    func encodeToJSON() -> Any {
+        var nillableDictionary = [String:Any?]()
         nillableDictionary["LoginProvider"] = self.loginProvider
         nillableDictionary["ProviderKey"] = self.providerKey
-        let dictionary: [String:AnyObject] = APIHelper.rejectNil(nillableDictionary) ?? [:]
+        let dictionary: [String:Any] = APIHelper.rejectNil(nillableDictionary) ?? [:]
         return dictionary
     }
 }

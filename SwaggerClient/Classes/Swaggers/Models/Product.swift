@@ -8,7 +8,7 @@
 import Foundation
 
 
-public class Product: JSONEncodable {
+open class Product: JSONEncodable {
     public var id: Int32?
     public var name: String?
     public var price: Double?
@@ -16,12 +16,12 @@ public class Product: JSONEncodable {
     public init() {}
 
     // MARK: JSONEncodable
-    func encodeToJSON() -> AnyObject {
-        var nillableDictionary = [String:AnyObject?]()
+    func encodeToJSON() -> Any {
+        var nillableDictionary = [String:Any?]()
         nillableDictionary["Id"] = self.id?.encodeToJSON()
         nillableDictionary["Name"] = self.name
         nillableDictionary["Price"] = self.price
-        let dictionary: [String:AnyObject] = APIHelper.rejectNil(nillableDictionary) ?? [:]
+        let dictionary: [String:Any] = APIHelper.rejectNil(nillableDictionary) ?? [:]
         return dictionary
     }
 }

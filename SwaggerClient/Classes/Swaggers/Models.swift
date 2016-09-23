@@ -7,21 +7,25 @@
 import Foundation
 
 protocol JSONEncodable {
-    func encodeToJSON() -> AnyObject
+    func encodeToJSON() -> Any
 }
 
-public class Response<T> {
-    public let statusCode: Int
-    public let header: [String: String]
-    public let body: T
+public enum ErrorResponse : Error {
+    case Error(Int, Data?, Error)
+}
 
-    public init(statusCode: Int, header: [String: String], body: T) {
+open class Response<T> {
+    open let statusCode: Int
+    open let header: [String: String]
+    open let body: T?
+
+    public init(statusCode: Int, header: [String: String], body: T?) {
         self.statusCode = statusCode
         self.header = header
         self.body = body
     }
 
-    public convenience init(response: NSHTTPURLResponse, body: T) {
+    public convenience init(response: HTTPURLResponse, body: T?) {
         let rawHeader = response.allHeaderFields
         var header = [String:String]()
         for (key, value) in rawHeader {
@@ -31,21 +35,21 @@ public class Response<T> {
     }
 }
 
-private var once = dispatch_once_t()
+private var once = Int()
 class Decoders {
-    static private var decoders = Dictionary<String, ((AnyObject) -> AnyObject)>()
+    static fileprivate var decoders = Dictionary<String, ((AnyObject) -> AnyObject)>()
 
-    static func addDecoder<T>(clazz clazz: T.Type, decoder: ((AnyObject) -> T)) {
+    static func addDecoder<T>(clazz: T.Type, decoder: @escaping ((AnyObject) -> T)) {
         let key = "\(T.self)"
-        decoders[key] = { decoder($0) as! AnyObject }
+        decoders[key] = { decoder($0) as AnyObject }
     }
 
-    static func decode<T>(clazz clazz: [T].Type, source: AnyObject) -> [T] {
+    static func decode<T>(clazz: [T].Type, source: AnyObject) -> [T] {
         let array = source as! [AnyObject]
         return array.map { Decoders.decode(clazz: T.self, source: $0) }
     }
 
-    static func decode<T, Key: Hashable>(clazz clazz: [Key:T].Type, source: AnyObject) -> [Key:T] {
+    static func decode<T, Key: Hashable>(clazz: [Key:T].Type, source: AnyObject) -> [Key:T] {
         let sourceDictionary = source as! [Key: AnyObject]
         var dictionary = [Key:T]()
         for (key, value) in sourceDictionary {
@@ -54,22 +58,22 @@ class Decoders {
         return dictionary
     }
 
-    static func decode<T>(clazz clazz: T.Type, source: AnyObject) -> T {
+    static func decode<T>(clazz: T.Type, source: AnyObject) -> T {
         initialize()
         if T.self is Int32.Type && source is NSNumber {
-            return source.intValue as! T;
+            return source.int32Value as! T;
         }
         if T.self is Int64.Type && source is NSNumber {
-            return source.longLongValue as! T;
+            return source.int64Value as! T;
         }
         if T.self is NSUUID.Type && source is String {
-            return NSUUID(UUIDString: source as! String) as! T
+            return NSUUID(uuidString: source as! String) as! T
         }
         if source is T {
             return source as! T
         }
-        if T.self is NSData.Type && source is String {
-            return NSData(base64EncodedString: source as! String, options: NSDataBase64DecodingOptions()) as! T
+        if T.self is Data.Type && source is String {
+            return Data(base64Encoded: source as! String) as! T
         }
 
         let key = "\(T.self)"
@@ -80,7 +84,7 @@ class Decoders {
         }
     }
 
-    static func decodeOptional<T>(clazz clazz: T.Type, source: AnyObject?) -> T? {
+    static func decodeOptional<T>(clazz: T.Type, source: AnyObject?) -> T? {
         if source is NSNull {
             return nil
         }
@@ -89,7 +93,7 @@ class Decoders {
         }
     }
 
-    static func decodeOptional<T>(clazz clazz: [T].Type, source: AnyObject?) -> [T]? {
+    static func decodeOptional<T>(clazz: [T].Type, source: AnyObject?) -> [T]? {
         if source is NSNull {
             return nil
         }
@@ -98,7 +102,7 @@ class Decoders {
         }
     }
 
-    static func decodeOptional<T, Key: Hashable>(clazz clazz: [Key:T].Type, source: AnyObject?) -> [Key:T]? {
+    static func decodeOptional<T, Key: Hashable>(clazz: [Key:T].Type, source: AnyObject?) -> [Key:T]? {
         if source is NSNull {
             return nil
         }
@@ -107,207 +111,208 @@ class Decoders {
         }
     }
 
-    static private func initialize() {
-        dispatch_once(&once) {
-            let formatters = [
-                "yyyy-MM-dd",
-                "yyyy-MM-dd'T'HH:mm:ssZZZZZ",
-                "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ",
-                "yyyy-MM-dd'T'HH:mm:ss'Z'",
-                "yyyy-MM-dd'T'HH:mm:ss.SSS"
-            ].map { (format: String) -> NSDateFormatter in
-                let formatter = NSDateFormatter()
-                formatter.dateFormat = format
-                return formatter
-            }
-            // Decoder for NSDate
-            Decoders.addDecoder(clazz: NSDate.self) { (source: AnyObject) -> NSDate in
-               if let sourceString = source as? String {
-                    for formatter in formatters {
-                        if let date = formatter.dateFromString(sourceString) {
-                            return date
-                        }
-                    }
-
-                }
-                if let sourceInt = source as? Int {
-                    // treat as a java date
-                    return NSDate(timeIntervalSince1970: Double(sourceInt / 1000) )
-                }
-                fatalError("formatter failed to parse \(source)")
-            } 
-
-            // Decoder for [AddExternalLoginBindingModel]
-            Decoders.addDecoder(clazz: [AddExternalLoginBindingModel].self) { (source: AnyObject) -> [AddExternalLoginBindingModel] in
-                return Decoders.decode(clazz: [AddExternalLoginBindingModel].self, source: source)
-            }
-            // Decoder for AddExternalLoginBindingModel
-            Decoders.addDecoder(clazz: AddExternalLoginBindingModel.self) { (source: AnyObject) -> AddExternalLoginBindingModel in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = AddExternalLoginBindingModel()
-                instance.externalAccessToken = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["ExternalAccessToken"])
-                return instance
-            }
-
-
-            // Decoder for [ChangePasswordBindingModel]
-            Decoders.addDecoder(clazz: [ChangePasswordBindingModel].self) { (source: AnyObject) -> [ChangePasswordBindingModel] in
-                return Decoders.decode(clazz: [ChangePasswordBindingModel].self, source: source)
-            }
-            // Decoder for ChangePasswordBindingModel
-            Decoders.addDecoder(clazz: ChangePasswordBindingModel.self) { (source: AnyObject) -> ChangePasswordBindingModel in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = ChangePasswordBindingModel()
-                instance.oldPassword = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["OldPassword"])
-                instance.newPassword = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["NewPassword"])
-                instance.confirmPassword = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["ConfirmPassword"])
-                return instance
-            }
-
-
-            // Decoder for [ExternalLoginViewModel]
-            Decoders.addDecoder(clazz: [ExternalLoginViewModel].self) { (source: AnyObject) -> [ExternalLoginViewModel] in
-                return Decoders.decode(clazz: [ExternalLoginViewModel].self, source: source)
-            }
-            // Decoder for ExternalLoginViewModel
-            Decoders.addDecoder(clazz: ExternalLoginViewModel.self) { (source: AnyObject) -> ExternalLoginViewModel in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = ExternalLoginViewModel()
-                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["Name"])
-                instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["Url"])
-                instance.state = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["State"])
-                return instance
-            }
-
-
-            // Decoder for [ManageInfoViewModel]
-            Decoders.addDecoder(clazz: [ManageInfoViewModel].self) { (source: AnyObject) -> [ManageInfoViewModel] in
-                return Decoders.decode(clazz: [ManageInfoViewModel].self, source: source)
-            }
-            // Decoder for ManageInfoViewModel
-            Decoders.addDecoder(clazz: ManageInfoViewModel.self) { (source: AnyObject) -> ManageInfoViewModel in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = ManageInfoViewModel()
-                instance.localLoginProvider = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["LocalLoginProvider"])
-                instance.email = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["Email"])
-                instance.logins = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["Logins"])
-                instance.externalLoginProviders = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["ExternalLoginProviders"])
-                return instance
-            }
-
-
-            // Decoder for [Product]
-            Decoders.addDecoder(clazz: [Product].self) { (source: AnyObject) -> [Product] in
-                return Decoders.decode(clazz: [Product].self, source: source)
-            }
-            // Decoder for Product
-            Decoders.addDecoder(clazz: Product.self) { (source: AnyObject) -> Product in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = Product()
-                instance.id = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["Id"])
-                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["Name"])
-                instance.price = Decoders.decodeOptional(clazz: Double.self, source: sourceDictionary["Price"])
-                return instance
-            }
-
-
-            // Decoder for [RegisterBindingModel]
-            Decoders.addDecoder(clazz: [RegisterBindingModel].self) { (source: AnyObject) -> [RegisterBindingModel] in
-                return Decoders.decode(clazz: [RegisterBindingModel].self, source: source)
-            }
-            // Decoder for RegisterBindingModel
-            Decoders.addDecoder(clazz: RegisterBindingModel.self) { (source: AnyObject) -> RegisterBindingModel in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = RegisterBindingModel()
-                instance.email = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["Email"])
-                instance.password = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["Password"])
-                instance.confirmPassword = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["ConfirmPassword"])
-                return instance
-            }
-
-
-            // Decoder for [RegisterExternalBindingModel]
-            Decoders.addDecoder(clazz: [RegisterExternalBindingModel].self) { (source: AnyObject) -> [RegisterExternalBindingModel] in
-                return Decoders.decode(clazz: [RegisterExternalBindingModel].self, source: source)
-            }
-            // Decoder for RegisterExternalBindingModel
-            Decoders.addDecoder(clazz: RegisterExternalBindingModel.self) { (source: AnyObject) -> RegisterExternalBindingModel in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = RegisterExternalBindingModel()
-                instance.email = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["Email"])
-                return instance
-            }
-
-
-            // Decoder for [RemoveLoginBindingModel]
-            Decoders.addDecoder(clazz: [RemoveLoginBindingModel].self) { (source: AnyObject) -> [RemoveLoginBindingModel] in
-                return Decoders.decode(clazz: [RemoveLoginBindingModel].self, source: source)
-            }
-            // Decoder for RemoveLoginBindingModel
-            Decoders.addDecoder(clazz: RemoveLoginBindingModel.self) { (source: AnyObject) -> RemoveLoginBindingModel in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = RemoveLoginBindingModel()
-                instance.loginProvider = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["LoginProvider"])
-                instance.providerKey = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["ProviderKey"])
-                return instance
-            }
-
-
-            // Decoder for [SetPasswordBindingModel]
-            Decoders.addDecoder(clazz: [SetPasswordBindingModel].self) { (source: AnyObject) -> [SetPasswordBindingModel] in
-                return Decoders.decode(clazz: [SetPasswordBindingModel].self, source: source)
-            }
-            // Decoder for SetPasswordBindingModel
-            Decoders.addDecoder(clazz: SetPasswordBindingModel.self) { (source: AnyObject) -> SetPasswordBindingModel in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = SetPasswordBindingModel()
-                instance.newPassword = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["NewPassword"])
-                instance.confirmPassword = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["ConfirmPassword"])
-                return instance
-            }
-
-
-            // Decoder for [TransactionAuth]
-            Decoders.addDecoder(clazz: [TransactionAuth].self) { (source: AnyObject) -> [TransactionAuth] in
-                return Decoders.decode(clazz: [TransactionAuth].self, source: source)
-            }
-            // Decoder for TransactionAuth
-            Decoders.addDecoder(clazz: TransactionAuth.self) { (source: AnyObject) -> TransactionAuth in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = TransactionAuth()
-                instance.transactionId = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["TransactionId"])
-                instance.authCode = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["AuthCode"])
-                return instance
-            }
-
-
-            // Decoder for [UserInfoViewModel]
-            Decoders.addDecoder(clazz: [UserInfoViewModel].self) { (source: AnyObject) -> [UserInfoViewModel] in
-                return Decoders.decode(clazz: [UserInfoViewModel].self, source: source)
-            }
-            // Decoder for UserInfoViewModel
-            Decoders.addDecoder(clazz: UserInfoViewModel.self) { (source: AnyObject) -> UserInfoViewModel in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = UserInfoViewModel()
-                instance.email = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["Email"])
-                instance.hasRegistered = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["HasRegistered"])
-                instance.loginProvider = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["LoginProvider"])
-                return instance
-            }
-
-
-            // Decoder for [UserLoginInfoViewModel]
-            Decoders.addDecoder(clazz: [UserLoginInfoViewModel].self) { (source: AnyObject) -> [UserLoginInfoViewModel] in
-                return Decoders.decode(clazz: [UserLoginInfoViewModel].self, source: source)
-            }
-            // Decoder for UserLoginInfoViewModel
-            Decoders.addDecoder(clazz: UserLoginInfoViewModel.self) { (source: AnyObject) -> UserLoginInfoViewModel in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = UserLoginInfoViewModel()
-                instance.loginProvider = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["LoginProvider"])
-                instance.providerKey = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["ProviderKey"])
-                return instance
-            }
+    private static var __once: () = {
+        let formatters = [
+            "yyyy-MM-dd",
+            "yyyy-MM-dd'T'HH:mm:ssZZZZZ",
+            "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ",
+            "yyyy-MM-dd'T'HH:mm:ss'Z'",
+            "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        ].map { (format: String) -> DateFormatter in
+            let formatter = DateFormatter()
+            formatter.dateFormat = format
+            return formatter
         }
+        // Decoder for Date
+        Decoders.addDecoder(clazz: Date.self) { (source: AnyObject) -> Date in
+           if let sourceString = source as? String {
+                for formatter in formatters {
+                    if let date = formatter.date(from: sourceString) {
+                        return date
+                    }
+                }
+            }
+            if let sourceInt = source as? Int {
+                // treat as a java date
+                return Date(timeIntervalSince1970: Double(sourceInt / 1000) )
+            }
+            fatalError("formatter failed to parse \(source)")
+        } 
+
+        // Decoder for [AddExternalLoginBindingModel]
+        Decoders.addDecoder(clazz: [AddExternalLoginBindingModel].self) { (source: AnyObject) -> [AddExternalLoginBindingModel] in
+            return Decoders.decode(clazz: [AddExternalLoginBindingModel].self, source: source)
+        }
+        // Decoder for AddExternalLoginBindingModel
+        Decoders.addDecoder(clazz: AddExternalLoginBindingModel.self) { (source: AnyObject) -> AddExternalLoginBindingModel in
+            let sourceDictionary = source as! [AnyHashable: Any]
+            let instance = AddExternalLoginBindingModel()
+            instance.externalAccessToken = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["ExternalAccessToken"] as AnyObject?)
+            return instance
+        }
+
+
+        // Decoder for [ChangePasswordBindingModel]
+        Decoders.addDecoder(clazz: [ChangePasswordBindingModel].self) { (source: AnyObject) -> [ChangePasswordBindingModel] in
+            return Decoders.decode(clazz: [ChangePasswordBindingModel].self, source: source)
+        }
+        // Decoder for ChangePasswordBindingModel
+        Decoders.addDecoder(clazz: ChangePasswordBindingModel.self) { (source: AnyObject) -> ChangePasswordBindingModel in
+            let sourceDictionary = source as! [AnyHashable: Any]
+            let instance = ChangePasswordBindingModel()
+            instance.oldPassword = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["OldPassword"] as AnyObject?)
+            instance.newPassword = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["NewPassword"] as AnyObject?)
+            instance.confirmPassword = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["ConfirmPassword"] as AnyObject?)
+            return instance
+        }
+
+
+        // Decoder for [ExternalLoginViewModel]
+        Decoders.addDecoder(clazz: [ExternalLoginViewModel].self) { (source: AnyObject) -> [ExternalLoginViewModel] in
+            return Decoders.decode(clazz: [ExternalLoginViewModel].self, source: source)
+        }
+        // Decoder for ExternalLoginViewModel
+        Decoders.addDecoder(clazz: ExternalLoginViewModel.self) { (source: AnyObject) -> ExternalLoginViewModel in
+            let sourceDictionary = source as! [AnyHashable: Any]
+            let instance = ExternalLoginViewModel()
+            instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["Name"] as AnyObject?)
+            instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["Url"] as AnyObject?)
+            instance.state = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["State"] as AnyObject?)
+            return instance
+        }
+
+
+        // Decoder for [ManageInfoViewModel]
+        Decoders.addDecoder(clazz: [ManageInfoViewModel].self) { (source: AnyObject) -> [ManageInfoViewModel] in
+            return Decoders.decode(clazz: [ManageInfoViewModel].self, source: source)
+        }
+        // Decoder for ManageInfoViewModel
+        Decoders.addDecoder(clazz: ManageInfoViewModel.self) { (source: AnyObject) -> ManageInfoViewModel in
+            let sourceDictionary = source as! [AnyHashable: Any]
+            let instance = ManageInfoViewModel()
+            instance.localLoginProvider = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["LocalLoginProvider"] as AnyObject?)
+            instance.email = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["Email"] as AnyObject?)
+            instance.logins = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["Logins"] as AnyObject?)
+            instance.externalLoginProviders = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["ExternalLoginProviders"] as AnyObject?)
+            return instance
+        }
+
+
+        // Decoder for [Product]
+        Decoders.addDecoder(clazz: [Product].self) { (source: AnyObject) -> [Product] in
+            return Decoders.decode(clazz: [Product].self, source: source)
+        }
+        // Decoder for Product
+        Decoders.addDecoder(clazz: Product.self) { (source: AnyObject) -> Product in
+            let sourceDictionary = source as! [AnyHashable: Any]
+            let instance = Product()
+            instance.id = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["Id"] as AnyObject?)
+            instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["Name"] as AnyObject?)
+            instance.price = Decoders.decodeOptional(clazz: Double.self, source: sourceDictionary["Price"] as AnyObject?)
+            return instance
+        }
+
+
+        // Decoder for [RegisterBindingModel]
+        Decoders.addDecoder(clazz: [RegisterBindingModel].self) { (source: AnyObject) -> [RegisterBindingModel] in
+            return Decoders.decode(clazz: [RegisterBindingModel].self, source: source)
+        }
+        // Decoder for RegisterBindingModel
+        Decoders.addDecoder(clazz: RegisterBindingModel.self) { (source: AnyObject) -> RegisterBindingModel in
+            let sourceDictionary = source as! [AnyHashable: Any]
+            let instance = RegisterBindingModel()
+            instance.email = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["Email"] as AnyObject?)
+            instance.password = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["Password"] as AnyObject?)
+            instance.confirmPassword = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["ConfirmPassword"] as AnyObject?)
+            return instance
+        }
+
+
+        // Decoder for [RegisterExternalBindingModel]
+        Decoders.addDecoder(clazz: [RegisterExternalBindingModel].self) { (source: AnyObject) -> [RegisterExternalBindingModel] in
+            return Decoders.decode(clazz: [RegisterExternalBindingModel].self, source: source)
+        }
+        // Decoder for RegisterExternalBindingModel
+        Decoders.addDecoder(clazz: RegisterExternalBindingModel.self) { (source: AnyObject) -> RegisterExternalBindingModel in
+            let sourceDictionary = source as! [AnyHashable: Any]
+            let instance = RegisterExternalBindingModel()
+            instance.email = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["Email"] as AnyObject?)
+            return instance
+        }
+
+
+        // Decoder for [RemoveLoginBindingModel]
+        Decoders.addDecoder(clazz: [RemoveLoginBindingModel].self) { (source: AnyObject) -> [RemoveLoginBindingModel] in
+            return Decoders.decode(clazz: [RemoveLoginBindingModel].self, source: source)
+        }
+        // Decoder for RemoveLoginBindingModel
+        Decoders.addDecoder(clazz: RemoveLoginBindingModel.self) { (source: AnyObject) -> RemoveLoginBindingModel in
+            let sourceDictionary = source as! [AnyHashable: Any]
+            let instance = RemoveLoginBindingModel()
+            instance.loginProvider = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["LoginProvider"] as AnyObject?)
+            instance.providerKey = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["ProviderKey"] as AnyObject?)
+            return instance
+        }
+
+
+        // Decoder for [SetPasswordBindingModel]
+        Decoders.addDecoder(clazz: [SetPasswordBindingModel].self) { (source: AnyObject) -> [SetPasswordBindingModel] in
+            return Decoders.decode(clazz: [SetPasswordBindingModel].self, source: source)
+        }
+        // Decoder for SetPasswordBindingModel
+        Decoders.addDecoder(clazz: SetPasswordBindingModel.self) { (source: AnyObject) -> SetPasswordBindingModel in
+            let sourceDictionary = source as! [AnyHashable: Any]
+            let instance = SetPasswordBindingModel()
+            instance.newPassword = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["NewPassword"] as AnyObject?)
+            instance.confirmPassword = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["ConfirmPassword"] as AnyObject?)
+            return instance
+        }
+
+
+        // Decoder for [TransactionAuth]
+        Decoders.addDecoder(clazz: [TransactionAuth].self) { (source: AnyObject) -> [TransactionAuth] in
+            return Decoders.decode(clazz: [TransactionAuth].self, source: source)
+        }
+        // Decoder for TransactionAuth
+        Decoders.addDecoder(clazz: TransactionAuth.self) { (source: AnyObject) -> TransactionAuth in
+            let sourceDictionary = source as! [AnyHashable: Any]
+            let instance = TransactionAuth()
+            instance.transactionId = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["TransactionId"] as AnyObject?)
+            instance.authCode = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["AuthCode"] as AnyObject?)
+            return instance
+        }
+
+
+        // Decoder for [UserInfoViewModel]
+        Decoders.addDecoder(clazz: [UserInfoViewModel].self) { (source: AnyObject) -> [UserInfoViewModel] in
+            return Decoders.decode(clazz: [UserInfoViewModel].self, source: source)
+        }
+        // Decoder for UserInfoViewModel
+        Decoders.addDecoder(clazz: UserInfoViewModel.self) { (source: AnyObject) -> UserInfoViewModel in
+            let sourceDictionary = source as! [AnyHashable: Any]
+            let instance = UserInfoViewModel()
+            instance.email = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["Email"] as AnyObject?)
+            instance.hasRegistered = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["HasRegistered"] as AnyObject?)
+            instance.loginProvider = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["LoginProvider"] as AnyObject?)
+            return instance
+        }
+
+
+        // Decoder for [UserLoginInfoViewModel]
+        Decoders.addDecoder(clazz: [UserLoginInfoViewModel].self) { (source: AnyObject) -> [UserLoginInfoViewModel] in
+            return Decoders.decode(clazz: [UserLoginInfoViewModel].self, source: source)
+        }
+        // Decoder for UserLoginInfoViewModel
+        Decoders.addDecoder(clazz: UserLoginInfoViewModel.self) { (source: AnyObject) -> UserLoginInfoViewModel in
+            let sourceDictionary = source as! [AnyHashable: Any]
+            let instance = UserLoginInfoViewModel()
+            instance.loginProvider = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["LoginProvider"] as AnyObject?)
+            instance.providerKey = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["ProviderKey"] as AnyObject?)
+            return instance
+        }
+    }()
+
+    static fileprivate func initialize() {
+        _ = Decoders.__once
     }
 }

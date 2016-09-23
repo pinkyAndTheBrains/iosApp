@@ -8,16 +8,16 @@
 import Foundation
 
 
-public class AddExternalLoginBindingModel: JSONEncodable {
+open class AddExternalLoginBindingModel: JSONEncodable {
     public var externalAccessToken: String?
 
     public init() {}
 
     // MARK: JSONEncodable
-    func encodeToJSON() -> AnyObject {
-        var nillableDictionary = [String:AnyObject?]()
+    func encodeToJSON() -> Any {
+        var nillableDictionary = [String:Any?]()
         nillableDictionary["ExternalAccessToken"] = self.externalAccessToken
-        let dictionary: [String:AnyObject] = APIHelper.rejectNil(nillableDictionary) ?? [:]
+        let dictionary: [String:Any] = APIHelper.rejectNil(nillableDictionary) ?? [:]
         return dictionary
     }
 }

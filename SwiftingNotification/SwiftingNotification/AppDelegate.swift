@@ -16,9 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         let center = UNUserNotificationCenter.current()
-        let action1 = UNNotificationAction(identifier: Actions.espresso, title: "Buy espresso", options: [.foreground])
-        let action2 = UNNotificationAction(identifier: Actions.cappucino, title: "Buy cappucino", options: [.foreground])
-        let action3 = UNNotificationAction(identifier: Actions.latte, title: "Buy latte", options: [.foreground])
+        let action1 = UNNotificationAction(identifier: Action.espresso.rawValue, title: "Buy espresso", options: [.foreground])
+        let action2 = UNNotificationAction(identifier: Action.cappucino.rawValue, title: "Buy cappucino", options: [.foreground])
+        let action3 = UNNotificationAction(identifier: Action.latte.rawValue, title: "Buy latte", options: [.foreground])
         let category = UNNotificationCategory(identifier: Consts.customContentIdentifier, actions: [action1, action2, action3], intentIdentifiers: [])
         center.setNotificationCategories([category])
         center.requestAuthorization(options: [.alert]) { (greanted, error) in

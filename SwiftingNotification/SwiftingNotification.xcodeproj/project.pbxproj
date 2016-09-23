@@ -24,6 +24,26 @@
 		2E8F077B1D942A78009AF852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E8F077A1D942A78009AF852 /* Assets.xcassets */; };
 		2E9F251D1D9488B400212FFE /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9F251C1D9488B400212FFE /* Alamofire.framework */; };
 		2E9F251E1D9488B400212FFE /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9F251C1D9488B400212FFE /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E9F25661D94909700212FFE /* AlamofireImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F25501D94909700212FFE /* AlamofireImplementations.swift */; };
+		2E9F25671D94909700212FFE /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F25511D94909700212FFE /* APIHelper.swift */; };
+		2E9F25681D94909700212FFE /* PaymentFinalAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F25531D94909700212FFE /* PaymentFinalAPI.swift */; };
+		2E9F25691D94909700212FFE /* PaymentPrepareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F25541D94909700212FFE /* PaymentPrepareAPI.swift */; };
+		2E9F256A1D94909700212FFE /* SuggestionsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F25551D94909700212FFE /* SuggestionsAPI.swift */; };
+		2E9F256B1D94909700212FFE /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F25561D94909700212FFE /* APIs.swift */; };
+		2E9F256C1D94909700212FFE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F25571D94909700212FFE /* Extensions.swift */; };
+		2E9F256D1D94909700212FFE /* AddExternalLoginBindingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F25591D94909700212FFE /* AddExternalLoginBindingModel.swift */; };
+		2E9F256E1D94909700212FFE /* ChangePasswordBindingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F255A1D94909700212FFE /* ChangePasswordBindingModel.swift */; };
+		2E9F256F1D94909700212FFE /* ExternalLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F255B1D94909700212FFE /* ExternalLoginViewModel.swift */; };
+		2E9F25701D94909700212FFE /* ManageInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F255C1D94909700212FFE /* ManageInfoViewModel.swift */; };
+		2E9F25711D94909700212FFE /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F255D1D94909700212FFE /* Product.swift */; };
+		2E9F25721D94909700212FFE /* RegisterBindingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F255E1D94909700212FFE /* RegisterBindingModel.swift */; };
+		2E9F25731D94909700212FFE /* RegisterExternalBindingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F255F1D94909700212FFE /* RegisterExternalBindingModel.swift */; };
+		2E9F25741D94909700212FFE /* RemoveLoginBindingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F25601D94909700212FFE /* RemoveLoginBindingModel.swift */; };
+		2E9F25751D94909700212FFE /* SetPasswordBindingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F25611D94909700212FFE /* SetPasswordBindingModel.swift */; };
+		2E9F25761D94909700212FFE /* TransactionAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F25621D94909700212FFE /* TransactionAuth.swift */; };
+		2E9F25771D94909700212FFE /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F25631D94909700212FFE /* UserInfoViewModel.swift */; };
+		2E9F25781D94909700212FFE /* UserLoginInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F25641D94909700212FFE /* UserLoginInfoViewModel.swift */; };
+		2E9F25791D94909700212FFE /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F25651D94909700212FFE /* Models.swift */; };
 		2EA47CB61D947A2D00CA3D4B /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA47CB51D947A2D00CA3D4B /* TestObject.m */; };
 		2EA47CC01D947A3500CA3D4B /* pinViewImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EA47CB81D947A3500CA3D4B /* pinViewImage.png */; };
 		2EA47CC11D947A3500CA3D4B /* PPCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA47CBA1D947A3500CA3D4B /* PPCircleButton.m */; };
@@ -91,6 +111,26 @@
 		1FC4222E1D5E702C00917D25 /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		2E8F077A1D942A78009AF852 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E9F251C1D9488B400212FFE /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alamofire.framework; sourceTree = "<group>"; };
+		2E9F25501D94909700212FFE /* AlamofireImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireImplementations.swift; sourceTree = "<group>"; };
+		2E9F25511D94909700212FFE /* APIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
+		2E9F25531D94909700212FFE /* PaymentFinalAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentFinalAPI.swift; sourceTree = "<group>"; };
+		2E9F25541D94909700212FFE /* PaymentPrepareAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentPrepareAPI.swift; sourceTree = "<group>"; };
+		2E9F25551D94909700212FFE /* SuggestionsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionsAPI.swift; sourceTree = "<group>"; };
+		2E9F25561D94909700212FFE /* APIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
+		2E9F25571D94909700212FFE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		2E9F25591D94909700212FFE /* AddExternalLoginBindingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExternalLoginBindingModel.swift; sourceTree = "<group>"; };
+		2E9F255A1D94909700212FFE /* ChangePasswordBindingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordBindingModel.swift; sourceTree = "<group>"; };
+		2E9F255B1D94909700212FFE /* ExternalLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalLoginViewModel.swift; sourceTree = "<group>"; };
+		2E9F255C1D94909700212FFE /* ManageInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageInfoViewModel.swift; sourceTree = "<group>"; };
+		2E9F255D1D94909700212FFE /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		2E9F255E1D94909700212FFE /* RegisterBindingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterBindingModel.swift; sourceTree = "<group>"; };
+		2E9F255F1D94909700212FFE /* RegisterExternalBindingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterExternalBindingModel.swift; sourceTree = "<group>"; };
+		2E9F25601D94909700212FFE /* RemoveLoginBindingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveLoginBindingModel.swift; sourceTree = "<group>"; };
+		2E9F25611D94909700212FFE /* SetPasswordBindingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPasswordBindingModel.swift; sourceTree = "<group>"; };
+		2E9F25621D94909700212FFE /* TransactionAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionAuth.swift; sourceTree = "<group>"; };
+		2E9F25631D94909700212FFE /* UserInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
+		2E9F25641D94909700212FFE /* UserLoginInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginInfoViewModel.swift; sourceTree = "<group>"; };
+		2E9F25651D94909700212FFE /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		2EA47CB31D947A2C00CA3D4B /* SwiftingNotification-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftingNotification-Bridging-Header.h"; sourceTree = "<group>"; };
 		2EA47CB41D947A2D00CA3D4B /* TestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObject.h; sourceTree = "<group>"; };
 		2EA47CB51D947A2D00CA3D4B /* TestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObject.m; sourceTree = "<group>"; };
@@ -132,6 +172,7 @@
 		1F85A6D01D44279D0006907C = {
 			isa = PBXGroup;
 			children = (
+				2E9F254D1D94909700212FFE /* SwaggerClient */,
 				2E9F251C1D9488B400212FFE /* Alamofire.framework */,
 				1F85A6DB1D44279E0006907C /* SwiftingNotification */,
 				1FBF33D21D46BC9700950439 /* NotificationContentExtension */,
@@ -200,6 +241,66 @@
 				2E8F077A1D942A78009AF852 /* Assets.xcassets */,
 			);
 			path = NotificationContentExtension;
+			sourceTree = "<group>";
+		};
+		2E9F254D1D94909700212FFE /* SwaggerClient */ = {
+			isa = PBXGroup;
+			children = (
+				2E9F254E1D94909700212FFE /* Classes */,
+			);
+			name = SwaggerClient;
+			path = ../SwaggerClient;
+			sourceTree = "<group>";
+		};
+		2E9F254E1D94909700212FFE /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2E9F254F1D94909700212FFE /* Swaggers */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		2E9F254F1D94909700212FFE /* Swaggers */ = {
+			isa = PBXGroup;
+			children = (
+				2E9F25501D94909700212FFE /* AlamofireImplementations.swift */,
+				2E9F25511D94909700212FFE /* APIHelper.swift */,
+				2E9F25521D94909700212FFE /* APIs */,
+				2E9F25561D94909700212FFE /* APIs.swift */,
+				2E9F25571D94909700212FFE /* Extensions.swift */,
+				2E9F25581D94909700212FFE /* Models */,
+				2E9F25651D94909700212FFE /* Models.swift */,
+			);
+			path = Swaggers;
+			sourceTree = "<group>";
+		};
+		2E9F25521D94909700212FFE /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				2E9F25531D94909700212FFE /* PaymentFinalAPI.swift */,
+				2E9F25541D94909700212FFE /* PaymentPrepareAPI.swift */,
+				2E9F25551D94909700212FFE /* SuggestionsAPI.swift */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		2E9F25581D94909700212FFE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2E9F25591D94909700212FFE /* AddExternalLoginBindingModel.swift */,
+				2E9F255A1D94909700212FFE /* ChangePasswordBindingModel.swift */,
+				2E9F255B1D94909700212FFE /* ExternalLoginViewModel.swift */,
+				2E9F255C1D94909700212FFE /* ManageInfoViewModel.swift */,
+				2E9F255D1D94909700212FFE /* Product.swift */,
+				2E9F255E1D94909700212FFE /* RegisterBindingModel.swift */,
+				2E9F255F1D94909700212FFE /* RegisterExternalBindingModel.swift */,
+				2E9F25601D94909700212FFE /* RemoveLoginBindingModel.swift */,
+				2E9F25611D94909700212FFE /* SetPasswordBindingModel.swift */,
+				2E9F25621D94909700212FFE /* TransactionAuth.swift */,
+				2E9F25631D94909700212FFE /* UserInfoViewModel.swift */,
+				2E9F25641D94909700212FFE /* UserLoginInfoViewModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2EA47CB71D947A3500CA3D4B /* PinPad */ = {
@@ -331,16 +432,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E9F25791D94909700212FFE /* Models.swift in Sources */,
+				2E9F25771D94909700212FFE /* UserInfoViewModel.swift in Sources */,
+				2E9F25761D94909700212FFE /* TransactionAuth.swift in Sources */,
+				2E9F256E1D94909700212FFE /* ChangePasswordBindingModel.swift in Sources */,
 				2EA6EEF01D94395D00F5CCC1 /* PaymentViewController.swift in Sources */,
+				2E9F256D1D94909700212FFE /* AddExternalLoginBindingModel.swift in Sources */,
+				2E9F25751D94909700212FFE /* SetPasswordBindingModel.swift in Sources */,
+				2E9F256F1D94909700212FFE /* ExternalLoginViewModel.swift in Sources */,
+				2E9F25781D94909700212FFE /* UserLoginInfoViewModel.swift in Sources */,
 				2EA47CC21D947A3500CA3D4B /* PPPinCircleView.m in Sources */,
+				2E9F25681D94909700212FFE /* PaymentFinalAPI.swift in Sources */,
 				2EA47CB61D947A2D00CA3D4B /* TestObject.m in Sources */,
+				2E9F25711D94909700212FFE /* Product.swift in Sources */,
+				2E9F25671D94909700212FFE /* APIHelper.swift in Sources */,
+				2E9F256B1D94909700212FFE /* APIs.swift in Sources */,
 				1F9EE3D81D61AF3B00AD24F7 /* NotificationContent.swift in Sources */,
+				2E9F25741D94909700212FFE /* RemoveLoginBindingModel.swift in Sources */,
+				2E9F25691D94909700212FFE /* PaymentPrepareAPI.swift in Sources */,
 				1F9EE3DA1D61B42800AD24F7 /* Helpers.swift in Sources */,
 				1F85A6DF1D44279E0006907C /* ViewController.swift in Sources */,
+				2E9F25721D94909700212FFE /* RegisterBindingModel.swift in Sources */,
+				2E9F25701D94909700212FFE /* ManageInfoViewModel.swift in Sources */,
 				2EA47CC61D94824600CA3D4B /* SwiftSpinner.swift in Sources */,
 				2EA47CC31D947A3500CA3D4B /* PPPinPadViewController.m in Sources */,
+				2E9F25661D94909700212FFE /* AlamofireImplementations.swift in Sources */,
 				1FC4222F1D5E702C00917D25 /* Consts.swift in Sources */,
 				1F9EE3D51D61AE9800AD24F7 /* NotificationButton.swift in Sources */,
+				2E9F25731D94909700212FFE /* RegisterExternalBindingModel.swift in Sources */,
+				2E9F256C1D94909700212FFE /* Extensions.swift in Sources */,
+				2E9F256A1D94909700212FFE /* SuggestionsAPI.swift in Sources */,
 				2EA47CC11D947A3500CA3D4B /* PPCircleButton.m in Sources */,
 				1F85A6DD1D44279E0006907C /* AppDelegate.swift in Sources */,
 				2EA6EEF21D94521F00F5CCC1 /* PaymentSuccessViewController.swift in Sources */,

@@ -90,6 +90,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="productName" destination="tIS-1x-CIi" id="Tz6-gk-URm"/>
+                        <outlet property="productPrice" destination="cfB-1J-1NY" id="qKl-yh-939"/>
                         <segue destination="C8H-gQ-oqs" kind="show" identifier="Success" id="MhH-YY-S5r"/>
                     </connections>
                 </viewController>

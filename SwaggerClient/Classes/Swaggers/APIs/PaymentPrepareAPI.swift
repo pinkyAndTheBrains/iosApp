@@ -9,15 +9,15 @@ import Alamofire
 
 
 
-public class PaymentPrepareAPI: APIBase {
+open class PaymentPrepareAPI: APIBase {
     /**
 
      - parameter productId: (query)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    public class func paymentPrepareGet(productId productId: Int32, completion: ((data: String?, error: ErrorType?) -> Void)) {
+    open class func paymentPrepareGet(productId productId: Int32, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         paymentPrepareGetWithRequestBuilder(productId: productId).execute { (response, error) -> Void in
-            completion(data: response?.body, error: error);
+            completion(response?.body, error);
         }
     }
 
@@ -31,11 +31,11 @@ public class PaymentPrepareAPI: APIBase {
 
      - returns: RequestBuilder<String> 
      */
-    public class func paymentPrepareGetWithRequestBuilder(productId productId: Int32) -> RequestBuilder<String> {
+    open class func paymentPrepareGetWithRequestBuilder(productId productId: Int32) -> RequestBuilder<String> {
         let path = "/api/PaymentPrepare"
         let URLString = SwaggerClientAPI.basePath + path
 
-        let nillableParameters: [String:AnyObject?] = [
+        let nillableParameters: [String:Any?] = [
             "productId": productId.encodeToJSON()
         ]
  

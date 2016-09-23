@@ -10,8 +10,16 @@ import UIKit
 
 class PaymentViewController: UIViewController {
     
+    var action: Action = .latte
+    
+    @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var productPrice: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        productName.text = action.description
+        productPrice.text = action.price
         
         navigationController?.navigationBar.barTintColor = UIColor(netHex: 0x185F57)
     }
@@ -25,7 +33,6 @@ class PaymentViewController: UIViewController {
         pinVc.modalPresentationStyle = .overCurrentContext
         
         self.present(pinVc, animated: true, completion: nil)
-
     }
     
 }
@@ -45,14 +52,20 @@ extension PaymentViewController: PinPadPasswordProtocol {
         SwiftSpinner.hide()
         SwiftSpinner.show(delay: 0.0, title: "Authorizing...", animated: true)
         
-//        PaymentPrepareAPI.paymentPrepareGet(productId: 1,
-//            completion: { (data, error) in
-//                
-//                print(data)
-//                print(error)
-//                SwiftSpinner.hide()
-//                self.performSegue(withIdentifier: "Success", sender: nil)
-//        })
+        PaymentPrepareAPI.paymentPrepareGet(productId: self.action.identifier,
+            completion: { (data, error) in
+                
+               let auth = TransactionAuth()
+                auth.authCode = "1234"
+                auth.transactionId = data?.replacingOccurrences(of: "\"", with: "") ?? "11221"
+                
+                PaymentFinalAPI.paymentFinalPost(transactionAuth: auth, completion: { (error) in
+                
+                    SwiftSpinner.hide()
+                    print(error)
+                    self.performSegue(withIdentifier: "Success", sender: nil)
+                })
+        })
         
         
     }

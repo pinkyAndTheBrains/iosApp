@@ -13,4 +13,10 @@ class PaymentSuccessViewController: UIViewController {
     @IBAction func buttonTapped(_ sender: UIButton) {
         _ = navigationController?.popToRootViewController(animated: true)
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationItem.hidesBackButton = true
+    }
 }

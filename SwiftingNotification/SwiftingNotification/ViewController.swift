@@ -53,7 +53,10 @@ extension UIViewController: UNUserNotificationCenterDelegate {
     
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Swift.Void) {
         
-        let viewController: UIViewController = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController()!
+        let action = Action(rawValue: response.actionIdentifier)!
+        
+        let viewController = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! PaymentViewController
+        viewController.action = action
         self.navigationController?.pushViewController(viewController, animated: false)
     }
 }
